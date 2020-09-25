@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final users = {
-      ...DUMMY_USERS
-    }; //foi usado o operador spread(...) para fazer uma copia de dummy_users
+    final users = {...DUMMY_USERS};
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter CRUD'),
