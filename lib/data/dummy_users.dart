@@ -19,4 +19,9 @@ const DUMMY_USERS = {
     email: 'fernanda@alunos.com.br',
     avatarUrl: 'https://cdn.pixabay.com/photo/2020/08/08/11/07/avatar-5472716_960_720.jpg'
   ),
+  '4': const User(
+    id: '4',
+    name: 'Gabriel',
+    email: 'gabriel@alunos.com.br',
+  ),
 };
