@@ -1,11 +1,12 @@
 import 'package:CRUD_Cod3r/components/user_tile.dart';
-import 'package:CRUD_Cod3r/data/dummy_users.dart';
+import 'package:CRUD_Cod3r/provider/users.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final users = {...DUMMY_USERS};
+    final Users users = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter CRUD'),
@@ -18,10 +19,9 @@ class UserList extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: users
-            .length, //bom para se usar quando se tem um valor grande de itens em uma lista
-        itemBuilder: (ctx, i) => UserTile(users.values.elementAt(i)),
-        // Text(users.values.elementAt(i).name),
-        //esta sendo passado o context e o valor para um campo de texto
+            .count, //bom para se usar quando se tem um valor grande de itens em uma lista
+        itemBuilder: (ctx, i) => UserTile(users.byIndex(i)),
+        // Text(users.byIndex(i)), esta sendo passado o context e o valor para um campo de texto
       ),
     );
   }
