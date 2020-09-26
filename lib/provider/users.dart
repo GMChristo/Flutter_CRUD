@@ -24,14 +24,17 @@ class Users with ChangeNotifier {
     return _items.values.elementAt(i);
   }
 
+  //adicionar novo contato
   void put(User user) {
+    debugPrint(user.id);
     if (user == null) {
       return;
     }
 
-    if (user.id != null &&
-        !user.id.trim().isNotEmpty &&
+    if ((user.id != null &&
+        !user.id.trim().isNotEmpty) || //alterado para corrigir erro de verificação
         _items.containsKey(user.id)) {
+          debugPrint('entrou no contains');
       //.trim; retira os espaços em branco, ou seja .trim().isEmpty verifica se ta vazio o campo
       _items.update(
         user.id,
@@ -43,8 +46,8 @@ class Users with ChangeNotifier {
         ),
       );
     } else {
-      //adicionar novo contato
-      final id = Random().nextDouble().toString();
+      final id = (_items.length+1).toString();
+      // final id = Random().nextDouble().toString(); alterado para linha de cima pois estava gerando valor aleatorio
       _items.putIfAbsent(
         id,
         () => User(
@@ -55,9 +58,14 @@ class Users with ChangeNotifier {
         ),
       );
     }
-
-    //editar
-
     notifyListeners(); //serve para informar o provider de que houve alteração e atualizar a tela
+  }
+
+  //remover contato de acordo com o id passado
+  void remove(User user) {
+    if(user != null && user.id != null) {
+      _items.remove(user.id);
+      notifyListeners();
+    }
   }
 }

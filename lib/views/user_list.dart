@@ -8,6 +8,7 @@ class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Users users = Provider.of(context);
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter CRUD'),
@@ -15,11 +16,8 @@ class UserList extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              users.put(User(
-                name: 'Teste',
-                email: 'teste@teste.com.br',
-                avatarUrl: '',
-              ));
+              
+              // users.remove(users.byIndex(0));
             },
           )
         ],

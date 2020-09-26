@@ -13,7 +13,7 @@ class UserTile extends StatelessWidget {
     return ListTile(
       //ListTile e bom para se usar com o listView pois ele ja tem o necessario para ser feito o posicionamento
       leading: avatar,
-      title: Text(user.name),
+      title: Text('${user.id} +  ${user.name}'),
       subtitle: Text(user.email),
       trailing: Container(
         width: 100,
