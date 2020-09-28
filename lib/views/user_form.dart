@@ -7,8 +7,22 @@ class UserForm extends StatelessWidget {
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
 
+  void _loadFormData(User user) {
+    if (user != null) {
+      //so vai carregar os dados se o usuario nao for nulo
+      _formData['id'] = user.id;
+      _formData['name'] = user.name;
+      _formData['email'] = user.email;
+      _formData['avatarUrl'] = user.avatarUrl;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final User user = ModalRoute.of(context).settings.arguments;
+    //esta recebendo na variavel user os dados que vieram como argumento
+    _loadFormData(user);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Formulário de usuário'),
@@ -43,6 +57,9 @@ class UserForm extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 TextFormField(
+                  initialValue: _formData['name'],
+                  //faz com que se tenha um valor inicial sendo recebido no _formData,
+                  //ele seja usado para preencher o campo
                   decoration: InputDecoration(labelText: 'Nome'),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -56,10 +73,12 @@ class UserForm extends StatelessWidget {
                   onSaved: (value) => _formData['name'] = value,
                 ),
                 TextFormField(
+                  initialValue: _formData['email'],
                   decoration: InputDecoration(labelText: 'E-mail'),
                   onSaved: (value) => _formData['email'] = value,
                 ),
                 TextFormField(
+                  initialValue: _formData['avatarUrl'],
                   decoration: InputDecoration(labelText: 'URL do Avatar'),
                   onSaved: (value) => _formData['avatarUrl'] = value,
                 )
